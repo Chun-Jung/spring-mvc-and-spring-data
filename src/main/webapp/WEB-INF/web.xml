@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
-
+	
 	<!-- root config -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/resources/spring/config/BeanLocations.xml</param-value>
+		<param-value>classpath:/spring/config/BeanLocations.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -16,9 +16,10 @@
 	<servlet>
 		<servlet-name>springDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 可省略不寫，預設名稱為[servlet-name]-servlet.xml，並放在WEB-INF資料夾中 -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/resources/spring/config/ServletContext.xml</param-value>
+			<param-value>/WEB-INF/ServletContext.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -26,4 +27,5 @@
 		<servlet-name>springDispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 </web-app>
