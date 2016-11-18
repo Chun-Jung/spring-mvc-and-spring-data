@@ -7,13 +7,16 @@
 <title>Header page</title>
 </head>
 <body>
-	<label>headerValue: </label>
-	<input id="headerValue" type="text" value="spring-mvc"><br>
+	<label>customer-header header: </label>
+	<input id="customer-header" type="text" value="spring-mvc"><br>
+	<label>content-type header: text/</label>
+	<input id="content-type" type="text" value="json"><br>
 	<button onclick="verifyHeaders()">verifyHeaders</button>
 
 	<script type="text/javascript">
 		function verifyHeaders(){
-			var headerValue = document.getElementById('headerValue').value;
+			var customer_header = document.getElementById('customer-header').value;
+			var content_type = document.getElementById('content-type').value;
 			var xmlHttpRequest = new XMLHttpRequest();
 			
 			xmlHttpRequest.onreadystatechange = function() {
@@ -32,7 +35,8 @@
 
 		    xmlHttpRequest.open("POST", "<%=request.getContextPath() %>/requestmapping/headers", true);
 		    xmlHttpRequest.setRequestHeader("test-header", "nothing");
-		    xmlHttpRequest.setRequestHeader("customer-header", headerValue);
+		    xmlHttpRequest.setRequestHeader("customer-header", customer_header);
+		    xmlHttpRequest.setRequestHeader("content-type", 'text/' + content_type);
 		    xmlHttpRequest.send();
 		}
 	</script>

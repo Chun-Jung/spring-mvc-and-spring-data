@@ -1,9 +1,11 @@
 package com.m3.annotation.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequestMapping("requestmapping")
@@ -63,8 +65,8 @@ public class RequestMappingController {
 	
 	@RequestMapping(value = "parameters", method = RequestMethod.POST)
 	@ResponseBody
-	public String catchVerifyParametersFail(){
-		return "404";
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public void catchVerifyParametersFail(){
 	}
 	
 	/** request header restrictions */
@@ -74,7 +76,7 @@ public class RequestMappingController {
 		return "headers";
 	}
 	
-	@RequestMapping(value = "headers", method = RequestMethod.POST, headers = {"test-header", "customer-header=spring-mvc"})
+	@RequestMapping(value = "headers", method = RequestMethod.POST, headers = {"test-header", "customer-header=spring-mvc", "content-type=text/*"})
 	@ResponseBody
 	public String verifyHeaders(){
 		return "OK";
@@ -82,14 +84,15 @@ public class RequestMappingController {
 	
 	/** content type restrictions */
 	
-	@RequestMapping(value = "contentType", method = RequestMethod.GET)
+	@RequestMapping(value = "contenttype", method = RequestMethod.GET)
 	public String contentTypePage(){
 		return "content_type";
 	}
 	
-	@RequestMapping(value = "contentType", method = RequestMethod.POST)
+	@RequestMapping(value = "contenttype", method = RequestMethod.POST, consumes = {"text/json", "application/json"}, produces = {"text/json", "application/json"})
 	@ResponseBody
 	public String verifyContentType(){
 		return "OK";
 	}
+	
 }

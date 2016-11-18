@@ -18,8 +18,8 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public void findOne(Integer empno) {
-		empDao.findOne(empno);
+	public Emp findOne(Integer empno) {
+		return empDao.findOne(empno);
 	}
 
 	@Override

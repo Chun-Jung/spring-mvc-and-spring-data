@@ -11,7 +11,7 @@ public interface EmpService {
 	 * 查詢一個員工
 	 * @param empno 員工編號
 	 */
-	public void findOne(Integer empno);
+	public Emp findOne(Integer empno);
 	
 	/**
 	 * 刪除員工
