@@ -1,5 +1,7 @@
 package com.m3.emp.model;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,4 +36,15 @@ public class EmpServiceImpl implements EmpService {
 		empDao.delete(empno);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Emp> findAll() {
+		return empDao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Emp> findByHiredateBetween(Date startDt, Date endDt){
+		return empDao.findByHiredateBetween(startDt, endDt);
+	}
 }
