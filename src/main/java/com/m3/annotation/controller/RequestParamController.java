@@ -1,6 +1,5 @@
 package com.m3.annotation.controller;
 
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Controller;
@@ -16,8 +15,8 @@ public class RequestParamController {
 	@RequestMapping("foo")
 	@ResponseBody
 	public String foo(@RequestParam("id") long userId,
-								@RequestParam(value = "name", required = false) String name,
-								@RequestParam(value = "tel", defaultValue = "(02)2700-7686") String tel){
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "tel", defaultValue = "(02)2700-7686") String tel){
 		String responseMsg = String.format("userId: %d, name: %s, tel: %s", userId, name, tel);
 		return responseMsg;
 	}
@@ -25,7 +24,7 @@ public class RequestParamController {
 	
 	@RequestMapping("bar")
 	@ResponseBody
-	public String bar(@RequestParam MultiValueMap<String, Object> multiValueMap){
+	public String bar(@RequestParam MultiValueMap<String, Object> multiValueMap){ // Map<String, String> map
 		Set<String> keys = multiValueMap.keySet();
 		StringBuilder sb = new StringBuilder();
 		sb.append("<h1>MultiValueMap</h1>" + System.lineSeparator());
@@ -34,4 +33,6 @@ public class RequestParamController {
 		}
 		return sb.toString();
 	}
+	
+	// @RequestHeader can use org.springframework.http.HttpHeaders to obtain the value values of all request headers
 }

@@ -1,14 +1,11 @@
 package com.m3.annotation.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -83,25 +80,5 @@ public class PathVariableController {
 		Iterable<Emp> emps = empService.findByHiredateBetween(startDt, startDt);
 		
 		return emps;
-	}
-	
-	@RequestMapping("emp/hiredate/{year:\\d+}/view")
-	@ResponseBody
-	public Iterable<Emp> findByMatrixVariable(@PathVariable("year") String year, @MatrixVariable Map<String, String> matrixVars){
-		Map<String, String> map = new HashMap<>();
-		String month = matrixVars.get("month");
-		String date = matrixVars.get("date");
-		map.put("year", year);
-		if(month != null){
-			map.put("month", month);
-			if(date != null){
-				map.put("date", date);
-				return findByDate(map);
-			}else{
-				return findByYearMonth(map);
-			}
-		}else{
-			return findByYear(map);
-		}
 	}
 }

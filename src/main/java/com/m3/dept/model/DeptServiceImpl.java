@@ -37,8 +37,14 @@ public class DeptServiceImpl implements DeptService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Collection<Dept> findByDname(String dname) {
+	public Iterable<Dept> findByDname(String dname) {
 		return deptDao.findByDname(dname);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Dept> findAll() {
+		return deptDao.findAll();
 	}
 
 }

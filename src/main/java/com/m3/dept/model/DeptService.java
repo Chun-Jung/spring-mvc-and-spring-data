@@ -17,6 +17,12 @@ public interface DeptService {
 	public Dept findOne(Integer deptno);
 	
 	/**
+	 * 查出所有部門
+	 * @return Iterable<Dept>
+	 */
+	public Iterable<Dept> findAll();
+	
+	/**
 	 * 刪除
 	 * @param dept 部門
 	 */
@@ -31,7 +37,7 @@ public interface DeptService {
 	/**
 	 * 依部門名稱搜尋部門
 	 * @param dname 部門名稱
-	 * @return Collection<Dept>
+	 * @return Iterable<Dept>
 	 */
-	public Collection<Dept> findByDname(String dname);
+	public Iterable<Dept> findByDname(String dname);
 }

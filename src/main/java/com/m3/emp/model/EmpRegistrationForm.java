@@ -2,25 +2,7 @@ package com.m3.emp.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import com.m3.dept.model.Dept;
-
-@Entity
-@Table(name = "emp2")
-public class Emp {
-	/** 員工編號 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer empno;
-	
+public class EmpRegistrationForm {
 	/** 員工姓名 */
 	private String ename;
 	
@@ -36,18 +18,8 @@ public class Emp {
 	/** 傭金 */
 	private Double comm;
 	
-	/** 部門 */
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "deptno")
-	private Dept dept;
-
-	public Integer getEmpno() {
-		return empno;
-	}
-
-	public void setEmpno(Integer empno) {
-		this.empno = empno;
-	}
+	/** 部門編號 */
+	private Integer deptno;
 
 	public String getEname() {
 		return ename;
@@ -64,7 +36,7 @@ public class Emp {
 	public void setJob(String job) {
 		this.job = job;
 	}
-
+	
 	public Date getHiredate() {
 		return hiredate;
 	}
@@ -89,11 +61,12 @@ public class Emp {
 		this.comm = comm;
 	}
 
-	public Dept getDept() {
-		return dept;
+	public Integer getDeptno() {
+		return deptno;
 	}
 
-	public void setDept(Dept dept) {
-		this.dept = dept;
+	public void setDeptno(Integer deptno) {
+		this.deptno = deptno;
 	}
+
 }
