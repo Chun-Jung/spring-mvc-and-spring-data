@@ -25,16 +25,20 @@
 		</c:if>
 		<form action="<%=request.getContextPath() %>/dept/findOne" method="post">
 			<label>部門編號:</label>
-			<input type="text" name="deptno"><button>查詢</button>
+			<input type="text" name="deptno">
+			<button class="btn btn-default">查詢</button>
 		</form>
 		<form action="<%=request.getContextPath() %>/dept/findOne" method="post">
+			<form:label path="depts">部門編號</form:label>
 			<form:select path="depts" name="deptno">
 <%-- 				<form:options items="${depts }" itemLabel="dname" itemValue="deptno"/> --%>
 				<c:forEach items="${depts }" var="item">
 					<form:option value="${item.deptno }">${item.deptno }-${item.dname }</form:option>
 				</c:forEach>
 			</form:select>
+			<button class="btn btn-default">查詢</button>
 		</form>
+		<a href="<%=request.getContextPath() %>/dept/registration">新增部門</a>
 	</div>
 	<script src="${jqueryJs }"></script>
 	<script src="${bootstrapJs }"></script>

@@ -12,25 +12,17 @@
 <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss" />
 <link rel="stylesheet" href="${normalizeCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
-<title>Dept find one page</title>
+<title>Dept registration</title>
 </head>
 <body>
 	<div class="container">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>部門名稱</th>
-					<th>地點</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${dept.dname }</td>
-					<td>${dept.loc }</td>
-				</tr>
-			</tbody>
-		</table>
-		<a class="btn btn-default" href="<%=request.getContextPath() %>/welcome">回首頁</a>
+		<form:form method="post" modelAttribute="deptForm">
+			<form:label path="dname">部門名稱</form:label>
+			<form:input path="dname"/><br />
+			<form:label path="loc">部門地點</form:label>
+			<form:input path="loc"/><br />
+			<button class="btn btn-primary">Submit</button>
+		</form:form>
 	</div>
 </body>
 </html>
