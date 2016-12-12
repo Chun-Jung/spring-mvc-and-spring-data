@@ -2,19 +2,19 @@ package com.m3.returntypes.controller;
 
 import java.util.Date;
 
-import javax.net.ssl.SSLEngineResult.Status;
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.m3.emp.model.Emp;
 import com.m3.example.model.UploadForm;
 
 @Controller
@@ -52,11 +52,16 @@ public class ReturnTypesController {
 	
 	@RequestMapping("responsebody")
 	public HttpEntity<?> responsebody(){
-		return ResponseEntity.status(HttpStatus.SEE_OTHER).header(HttpHeaders.LOCATION, "returntypes/model").build();
+		return ResponseEntity.status(HttpStatus.SEE_OTHER).header(HttpHeaders.LOCATION, "model").build();
 	}
 	
 	@RequestMapping("any")
-	public String any(){
-		return null;
+	@ModelAttribute("anyEmp")
+	public Emp any(){
+		Emp emp = new Emp();
+		emp.setEname("m3_user_any");
+		emp.setJob("PG");
+		emp.setSal(10.5);
+		return emp;
 	}
 }
