@@ -1,7 +1,9 @@
 package com.m3.data.binding.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.Part;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 @RequestMapping("multipart")
@@ -39,6 +42,19 @@ public class MultipartController {
 				continue;
 			}
 			msg += "<br />upload.name: " + upload.getName() + ", upload.originalFilename: " + upload.getOriginalFilename() + ", upload.size: " + upload.getSize();
+		}
+		return msg;
+	}
+	
+	@RequestMapping(value = "uploadsUsingRequest", method = RequestMethod.POST)
+	@ResponseBody
+	public String doUploadsUsingRequest(MultipartHttpServletRequest request) throws IOException, ServletException{
+		String msg = "username: " + request.getParameter("username");
+		for(Part part : request.getParts()){
+			if(part.getSize() == 0){
+				continue;
+			}
+			msg += "<br />part.name: " + part.getName() + ", part.submittedFileName: " + part.getSubmittedFileName() + ", part.size: " + part.getSize();
 		}
 		return msg;
 	}

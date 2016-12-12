@@ -16,12 +16,13 @@
 	<servlet>
 		<servlet-name>springDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!-- 可省略不寫，預設名稱為[servlet-name]-servlet.xml，並放在WEB-INF資料夾中 -->
+		<!-- defalut Spring MVC looks for a file named [servlet-name]-servlet.xml in the WEB-INF -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/ServletContext.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<!-- upload file -->
 		<multipart-config>
 			<max-file-size>20971520</max-file-size>
 			<max-request-size>41943040</max-request-size>
