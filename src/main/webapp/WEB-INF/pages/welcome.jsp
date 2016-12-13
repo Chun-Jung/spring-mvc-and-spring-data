@@ -15,6 +15,11 @@
 <spring:url value="/resources/js/bootstrap.min.js" var="bootstrapJs" />
 <link rel="stylesheet" href="${normalizeCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
+<style type="text/css">
+	.margin-top{
+		margin-top: 20px;
+	}
+</style>
 <title>Welcome!</title>
 </head>
 <body>
@@ -23,23 +28,48 @@
 		<c:if test="${not empty errorMsg }">
 			<h3 style="color:red">${errorMsg }</h3>
 		</c:if>
-		<form action="<%=request.getContextPath() %>/dept/findOne" method="post">
-			<label>部門編號:</label>
-			<input type="text" name="deptno">
-			<button class="btn btn-default">查詢</button>
-		</form>
-		<form action="<%=request.getContextPath() %>/dept/findOne" method="post">
-			<form:label path="depts">部門編號</form:label>
-			<form:select path="depts" name="deptno">
-<%-- 				<form:options items="${depts }" itemLabel="dname" itemValue="deptno"/> --%>
-				<c:forEach items="${depts }" var="item">
-					<form:option value="${item.deptno }">${item.deptno }-${item.dname }</form:option>
-				</c:forEach>
-			</form:select>
-			<button class="btn btn-default">查詢</button>
-		</form>
-		<a href="<%=request.getContextPath() %>/dept/registration">新增部門</a>
+		<div class="margin-top">
+			<h3>部門查詢</h3>
+			<form class="form-inline" action="<%=request.getContextPath() %>/dept/findOne" method="post">
+				<label for="deptno1" >部門編號:</label>
+				<input id="deptno1" class="form-control" type="text" name="deptno" />
+				<button class="btn btn-default">查詢</button>
+			</form>
+			<form class="form-inline" action="<%=request.getContextPath() %>/dept/findOne" method="post">
+				<form:label for="deptno2" path="depts">部門編號:</form:label>
+				<form:select id="deptno2" class="form-control"  path="depts" name="deptno">
+	<%-- 				<form:options items="${depts }" itemLabel="dname" itemValue="deptno"/> --%>
+					<c:forEach items="${depts }" var="item">
+						<form:option value="${item.deptno }">${item.deptno }-${item.dname }</form:option>
+					</c:forEach>
+				</form:select>
+				<button class="btn btn-default">查詢</button>
+			</form>
+			<a href="<%=request.getContextPath() %>/dept/add">新增部門</a>
+			<a href="<%=request.getContextPath() %>/dept/findAllDepts">查看全部</a>
+		</div>
+		<hr />
+		<div class="margin-top">
+			<h3>員工查詢</h3>
+			<form class="form-inline" action="<%=request.getContextPath() %>/emp/findOne" method="post">
+				<label for="empno1">員工編號</label>
+				<input id="empno1" class="form-control" type="text" name="empno"/>
+				<button class="btn btn-default">查詢</button>
+			</form>
+			<form class="form-inline" action="<%=request.getContextPath() %>/emp/findOne" method="post">
+				<label for="empno2">員工編號:</label>
+				<form:select id="empno2" class="form-control" path="emps" name="empno">
+					<c:forEach items="${emps }" var="item">
+						<form:options items="${emps }" itemLabel="ename" itemValue="empno" />
+					</c:forEach>
+				</form:select>
+				<button class="btn btn-default">查詢</button>
+			</form>
+			<a href="<%=request.getContextPath() %>/emp/add">新增員工</a>
+			<a href="<%=request.getContextPath() %>/emp/findAllEmps">查看全部</a>
+		</div>
 	</div>
+	
 	<script src="${jqueryJs }"></script>
 	<script src="${bootstrapJs }"></script>
 </body>

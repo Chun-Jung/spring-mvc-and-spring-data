@@ -1,6 +1,9 @@
 package com.m3.emp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +28,11 @@ public class EmpController {
 	public String findOne(Integer empno, Model model){
 		Emp emp = empService.findOne(empno);
 		if(emp == null){
-			model.addAttribute("errorMsg", "查無該部門編號-" + empno);
+			model.addAttribute("errorMsg", "查無該員工編號-" + empno);
 		}else{
 			model.addAttribute(emp);
 		}
-		return emp == null ? "forward:/welcome" : "dept/findOneEmp";
+		return emp == null ? "forward:/welcome" : "emp/findOneEmp";
 	}
 	
 	@RequestMapping(value = "findOne/{empno:\\d+}")
@@ -37,17 +40,54 @@ public class EmpController {
 		return this.findOne(empno, model);
 	}
 	
-	@RequestMapping(value = "registration", method = RequestMethod.GET)
-	public String registrationPage(Model model){
-		model.addAttribute("emp", new Emp());
-		model.addAttribute("depts", deptService.findAll());
-		return "emp/registration";
+	@RequestMapping(value = "findAllEmps", method = RequestMethod.GET)
+	public Model findAllEmps(Model model){
+		model.addAttribute("emps", empService.findAll());
+		return model;
 	}
 	
-	@RequestMapping(value = "registration", method = RequestMethod.POST)
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String addEmpPage(Model model){
+		model.addAttribute("empForm", new Emp());
+		model.addAttribute("depts", deptService.findAll());
+		model.addAttribute("title", "Emp add page");
+		return "emp/empModify";
+	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addEmp(Emp emp){
 		empService.saveOrUpdate(emp);
-		return "redirect:/emp/findOne" + emp.getEmpno();
+		return "redirect:/emp/findOne/" + emp.getEmpno();
 	}
 	
+	@RequestMapping(value = "modify/{empno:\\d+}", method = RequestMethod.GET)
+	public String modifyEmpPage(@PathVariable("empno") Integer empno,Model model){
+		Emp emp = empService.findOne(empno);
+		if(emp == null){
+			model.addAttribute("errorMsg", "查無該員工編號-" + empno);
+			return "forward:/welcome";
+		}
+		
+		model.addAttribute("empForm", emp);
+		model.addAttribute("depts", deptService.findAll());
+		model.addAttribute("title", "Emp modify page");
+		return "emp/empModify";
+	}
+	
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String modifyEmp(Emp emp){
+		empService.saveOrUpdate(emp);
+		return "redirect:/emp/findOne/" + emp.getEmpno();
+	}
+	
+	@RequestMapping(value = "deleteOne/{empno:\\d+}", method = RequestMethod.DELETE)
+	public HttpEntity<Emp> deleteOneEmp(@PathVariable("empno") Integer empno){
+		Emp emp = empService.findOne(empno);
+		if(emp == null){
+			return new ResponseEntity<Emp>(HttpStatus.NOT_FOUND);
+		}
+		
+		empService.delete(emp);
+		return new ResponseEntity<Emp>(HttpStatus.NO_CONTENT);
+	}
 }

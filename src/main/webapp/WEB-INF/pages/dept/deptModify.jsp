@@ -12,7 +12,7 @@
 <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss" />
 <link rel="stylesheet" href="${normalizeCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
-<title>Dept registration</title>
+<title>${title }</title>
 </head>
 <body>
 	<div class="container">

@@ -35,13 +35,14 @@ public class DeptController {
 		return this.findOne(deptno, model);
 	}
 	
-	@RequestMapping(value = "registration", method = RequestMethod.GET)
-	public String registrationPage(Model model){
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String addDeptPage(Model model){
 		model.addAttribute("deptForm", new DeptRegistrationForm());
-		return "dept/registration";
+		model.addAttribute("title", "Dept add page");
+		return "dept/deptModify";
 	}
 	
-	@RequestMapping(value = "registration", method = RequestMethod.POST)
+	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addDept(DeptRegistrationForm deptForm){
 		Dept dept = new Dept();
 		BeanUtils.copyProperties(deptForm, dept);
