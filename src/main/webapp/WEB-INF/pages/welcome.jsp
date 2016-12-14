@@ -59,9 +59,7 @@
 			<form class="form-inline" action="<%=request.getContextPath() %>/emp/findOne" method="post">
 				<label for="empno2">員工編號:</label>
 				<form:select id="empno2" class="form-control" path="emps" name="empno">
-					<c:forEach items="${emps }" var="item">
-						<form:options items="${emps }" itemLabel="ename" itemValue="empno" />
-					</c:forEach>
+					<form:options items="${emps }" itemLabel="ename" itemValue="empno" />
 				</form:select>
 				<button class="btn btn-default">查詢</button>
 			</form>

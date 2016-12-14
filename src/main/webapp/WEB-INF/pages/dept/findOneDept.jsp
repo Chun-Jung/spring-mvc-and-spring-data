@@ -31,6 +31,7 @@
 			</tbody>
 		</table>
 		<a class="btn btn-default" href="<%=request.getContextPath() %>/welcome">回首頁</a>
+		<a class="btn btn-success" href="<%=request.getContextPath() %>/dept/modify/${dept.deptno}">更新</a>
 	</div>
 </body>
 </html>

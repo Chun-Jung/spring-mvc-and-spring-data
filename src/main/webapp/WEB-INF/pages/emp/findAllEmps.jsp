@@ -39,7 +39,7 @@
 					<td>${emp.comm }</td>
 					<td>${emp.dept.deptno }-${emp.dept.dname }</td>
 					<td>
-						btn.btn.
+						<a class="btn btn-success" href="<%=request.getContextPath() %>/emp/modify/${emp.empno}">更新</a>
 						<button class="btn btn-danger" onclick="deleteEmp(${emp.empno}, this)">刪除</button>
 					</td>
 				</tr>
@@ -50,20 +50,22 @@
 	</div>
 	<script type="text/javascript">
 		function deleteEmp(empno, btn){
-			alert(btn.parentNode.parentNode.nodeName);
-// 			var xmlHttpRequest = new XMLHttpRequest();
+			var xmlHttpRequest = new XMLHttpRequest();
 			
-// 			xmlHttpRequest.onreadystatechange = function() {
-// 		        if (xmlHttpRequest.readyState == XMLHttpRequest.DONE ) {
-// 		           if (xmlHttpRequest.status != 204) {
-// 		        	   alert('something else other than 204 was returned ' + xmlHttpRequest.status);
-// 		           }
+			xmlHttpRequest.onreadystatechange = function() {
+		        if (xmlHttpRequest.readyState == XMLHttpRequest.DONE ) {
+		           if (xmlHttpRequest.status != 204) {
+		        	   alert('something else other than 204 was returned ' + xmlHttpRequest.status);
+		           }
 		           
-// 		        }
-// 		    };
+		        }
+		    };
 		    
-<%-- 		    xmlHttpRequest.open('DELETE', '<%=request.getContextPath() %>/emp/deleteOne/' + empno, true); --%>
-// 		    xmlHttpRequest.send();
+		    xmlHttpRequest.open('DELETE', '<%=request.getContextPath() %>/emp/deleteOne/' + empno, true);
+		    xmlHttpRequest.send();
+		    var tbodyNode = document.getElementsByTagName("tbody")[0];
+			var childNode = btn.parentNode.parentNode;
+			tbodyNode.removeChild(childNode);
 		}
 	</script>
 </body>

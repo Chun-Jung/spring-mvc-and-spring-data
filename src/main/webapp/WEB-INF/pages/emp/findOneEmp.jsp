@@ -2,6 +2,7 @@
 %><%@ taglib prefix="spring" uri="http://www.springframework.org/tags"
 %><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
 %><%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"
+%><%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" 
 %>
 <!DOCTYPE>
 <html>
@@ -31,13 +32,14 @@
 				<tr>
 					<td>${emp.ename }</td>
 					<td>${emp.job }</td>
-					<td>${emp.hiredate }</td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${emp.hiredate }"/></td>
 					<td>${emp.sal }</td>
 					<td>${emp.comm }</td>
 					<td>${emp.dept.deptno }-${emp.dept.dname }</td>
 				</tr>
 			</tbody>
 		</table>
+		<a class="btn btn-success" href="<%=request.getContextPath() %>/emp/modify/${emp.empno}">更新</a>
 		<a class="btn btn-default" href="<%=request.getContextPath() %>/welcome">回首頁</a>
 	</div>
 </body>

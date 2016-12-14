@@ -11,10 +11,11 @@
 <title>${title }</title>
 </head>
 <body>
+	<spring:url var="actionUrl" value="/emp/modify" />
 	<!-- 'command' is default value for modelAttribute -->
-	<form:form mehtod="POST" modelAttribute="empForm" action="modify">
+	<form:form action="${actionUrl }" modelAttribute="empForm"  mehtod="POST" >
 		<fmt:formatDate value="${empForm.hiredate }" var="fmtHiredate" pattern="yyyy/MM/dd"/>
-		
+		<form:hidden path="empno"/>
 		<form:label path="ename">員工姓名:</form:label>
 		<form:input path="ename" /><br />
 		<form:label path="job">職　　稱:</form:label>

@@ -16,7 +16,9 @@
 </head>
 <body>
 	<div class="container">
-		<form:form method="post" modelAttribute="deptForm">
+		<spring:url var="actionUrl" value="/dept/modify" />
+		<form:form action="${actionUrl }" method="post" modelAttribute="deptForm">
+			<form:hidden path="deptno"/>
 			<form:label path="dname">部門名稱</form:label>
 			<form:input path="dname"/><br />
 			<form:label path="loc">部門地點</form:label>
