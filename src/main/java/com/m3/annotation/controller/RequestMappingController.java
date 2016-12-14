@@ -1,11 +1,9 @@
 package com.m3.annotation.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequestMapping("requestmapping")
@@ -28,7 +26,7 @@ public class RequestMappingController {
 	@RequestMapping("view/id/*")
 	@ResponseBody
 	public String view(){
-		return "<h1>view</h1>";
+		return "<h1>viewId</h1>";
 	}
 	
 	@RequestMapping("view/other*")
@@ -61,12 +59,6 @@ public class RequestMappingController {
 	@ResponseBody
 	public String verifyParameters(){
 		return "<h1>Verify Success</h1>";
-	}
-	
-	@RequestMapping(value = "parameters", method = RequestMethod.POST)
-	@ResponseBody
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public void catchVerifyParametersFail(){
 	}
 	
 	/** request header restrictions */

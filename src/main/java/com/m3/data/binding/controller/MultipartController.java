@@ -51,7 +51,7 @@ public class MultipartController {
 	public String doUploadsUsingRequest(MultipartHttpServletRequest request) throws IOException, ServletException{
 		String msg = "username: " + request.getParameter("username");
 		for(Part part : request.getParts()){
-			if(part.getSize() == 0){
+			if(part.getSize() == 0 || StringUtils.isEmpty(part.getSubmittedFileName())){
 				continue;
 			}
 			msg += "<br />part.name: " + part.getName() + ", part.submittedFileName: " + part.getSubmittedFileName() + ", part.size: " + part.getSize();

@@ -25,7 +25,10 @@ public class FormDataBindingController {
 		String msg = "";
 		msg += "username:" + form.getUsername() + "<br />date:" + form.getDate();
 		for(MultipartFile file : form.getFile()){
-			msg += "<br>file.name" + file.getOriginalFilename() + ", file.size" + file.getSize();
+			if(file.getSize() == 0){
+				continue;
+			}
+			msg += "<br>file.name:" + file.getOriginalFilename() + ", file.size:" + file.getSize();
 		}
 		return msg;
 	}

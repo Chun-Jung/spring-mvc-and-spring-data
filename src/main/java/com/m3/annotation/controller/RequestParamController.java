@@ -24,15 +24,11 @@ public class RequestParamController {
 	
 	@RequestMapping("bar")
 	@ResponseBody
-	public String bar(@RequestParam MultiValueMap<String, Object> multiValueMap){ // Map<String, String> map
+	public String bar(@RequestParam MultiValueMap<String, String> multiValueMap){ // Map<String, String> map
 		Set<String> keys = multiValueMap.keySet();
 		StringBuilder sb = new StringBuilder();
-		sb.append("<h1>MultiValueMap</h1>" + System.lineSeparator());
-		for(String key : keys){
-			sb.append(key + ": " + multiValueMap.get(key) + System.lineSeparator());
-		}
+		sb.append("<h1>MultiValueMap</h1>");
+		keys.forEach(key -> sb.append(key + ": " + multiValueMap.get(key) + "<br />"));
 		return sb.toString();
 	}
-	
-	// @RequestHeader can use org.springframework.http.HttpHeaders to obtain the value values of all request headers
 }

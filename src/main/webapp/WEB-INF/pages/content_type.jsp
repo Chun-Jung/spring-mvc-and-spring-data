@@ -33,7 +33,7 @@
 		        }
 		    };
 
-		    xmlHttpRequest.open("POST", "<%=request.getContextPath() %>/requestmapping/contentType", true);
+		    xmlHttpRequest.open("POST", "<%=request.getContextPath() %>/requestmapping/contenttype", true);
 		    xmlHttpRequest.setRequestHeader("Content-Type", contentTypeValue);
 		    xmlHttpRequest.setRequestHeader("Accept", acceptValue);
 		    xmlHttpRequest.send();

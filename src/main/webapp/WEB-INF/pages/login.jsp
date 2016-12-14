@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>RequestMethod.GET</h1>
-	<form action="<%=request.getContextPath() %>/requestmapping/login" method="post">
+	<form method="post">
 		<label>Name: </label>
 		<input type="text" name="name"><br>
 		<button>Submit</button>

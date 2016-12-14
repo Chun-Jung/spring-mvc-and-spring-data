@@ -31,5 +31,18 @@
 		<input type="file" name="upload" /><br />
 		<button>submit</button>
 	</form>
+	
+	<h3>multiple upload files using MultipartHttpServletRequest</h3>
+	<form action="<%=request.getContextPath() %>/multipart/uploadsUsingRequest" method="post" enctype="multipart/form-data">
+		<label>username: </label>
+		<input type="text" name="username" /><br />
+		<label>upload file: </label>
+		<input type="file" name="file1" /><br />
+		<label>upload file: </label>
+		<input type="file" name="file2" /><br />
+		<label>upload file: </label>
+		<input type="file" name="file3" /><br />
+		<button>submit</button>
+	</form>
 </body>
 </html>

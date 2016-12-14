@@ -7,7 +7,7 @@
 <title>Parameters page</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath() %>/requestmapping/parameters" method="post">
+	<form method="post">
 		<label>Username: </label>
 		<input type="text" name="username"><br>
 		<label>Password: </label>
