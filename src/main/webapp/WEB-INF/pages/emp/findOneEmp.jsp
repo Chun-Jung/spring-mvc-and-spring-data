@@ -25,8 +25,7 @@
 					<th>聘用日期</th>
 					<th>薪水</th>
 					<th>傭金</th>
-					<th>部門</th>
-				</tr>
+					<th>部門</th></tr>
 			</thead>
 			<tbody>
 				<tr>
@@ -35,11 +34,11 @@
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${emp.hiredate }"/></td>
 					<td>${emp.sal }</td>
 					<td>${emp.comm }</td>
-					<td>${emp.dept.deptno }-${emp.dept.dname }</td>
-				</tr>
+					<td>${emp.dept.deptno }-${emp.dept.dname }</td></tr>
 			</tbody>
 		</table>
 		<a class="btn btn-success" href="<%=request.getContextPath() %>/emp/modify/${emp.empno}">更新</a>
+		<a class="btn btn-info" href="<%=request.getContextPath() %>/emp/findAllEmps">查看所有部門</a>
 		<a class="btn btn-default" href="<%=request.getContextPath() %>/welcome">回首頁</a>
 	</div>
 </body>
