@@ -26,8 +26,7 @@
 					<th>薪水</th>
 					<th>傭金</th>
 					<th>部門</th>
-					<th></th>
-				</tr>
+					<th></th></tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${emps }" var="emp">
@@ -40,16 +39,19 @@
 					<td>${emp.dept.deptno }-${emp.dept.dname }</td>
 					<td>
 						<a class="btn btn-success" href="<%=request.getContextPath() %>/emp/modify/${emp.empno}">更新</a>
-						<button class="btn btn-danger" onclick="deleteEmp(${emp.empno}, this)">刪除</button>
-					</td>
-				</tr>
+						<button class="btn btn-danger" onclick="deleteEmp(${emp.empno}, '${emp.ename }', this)">刪除</button></td></tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<a class="btn btn-default" href="<%=request.getContextPath() %>/welcome">回首頁</a>
 	</div>
 	<script type="text/javascript">
-		function deleteEmp(empno, btn){
+		function deleteEmp(empno, ename, btn){
+			var confirmMsg = 'You\'re deleting department : ' + empno + '-' + ename + ', are you sure you want to do it?';
+			if(window.confirm(confirmMsg) != true){
+				return;
+			}
+			
 			var xmlHttpRequest = new XMLHttpRequest();
 			
 			xmlHttpRequest.onreadystatechange = function() {

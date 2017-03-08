@@ -9,10 +9,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<spring:url value="/resources/css/normalize.css" var="normalizeCss" />
-<spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss" />
-<spring:url value="/resources/js/jquery.min.js" var="jqueryJs" />
-<spring:url value="/resources/js/bootstrap.min.js" var="bootstrapJs" />
+<spring:url value="/resources/css/normalize.css" var="normalizeCss" 
+/><spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss" 
+/><spring:url value="/resources/js/jquery.min.js" var="jqueryJs" 
+/><spring:url value="/resources/js/bootstrap.min.js" var="bootstrapJs" />
 <link rel="stylesheet" href="${normalizeCss }">
 <link rel="stylesheet" href="${bootstrapCss }">
 <style type="text/css">

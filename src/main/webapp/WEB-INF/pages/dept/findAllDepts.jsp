@@ -21,27 +21,28 @@
 				<tr>
 					<th>部門名稱</th>
 					<th>地點</th>
-					<th></th>
-				</tr>
+					<th></th></tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${depts }" var="dept">
 					<tr>
 						<td>${dept.dname }</td>
 						<td>${dept.loc }</td>
-						<td><a class="btn btn-success"
-							href="<%=request.getContextPath() %>/dept/modify/${dept.deptno}">更新</a>
-							<button class="btn btn-danger"
-								onclick="deleteDept(${dept.deptno}, this)">刪除</button></td>
-					</tr>
+						<td>
+							<a class="btn btn-success" href="<%=request.getContextPath() %>/dept/modify/${dept.deptno}">更新</a>
+							<button class="btn btn-danger" onclick="deleteDept(${dept.deptno}, '${dept.dname }', this)">刪除</button></td></tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<a class="btn btn-default"
-			href="<%=request.getContextPath()%>/welcome">回首頁</a>
+		<a class="btn btn-default" href="<%=request.getContextPath()%>/welcome">回首頁</a>
 	</div>
 	<script type="text/javascript">
-		function deleteDept(deptno, btn){
+		function deleteDept(deptno, dname, btn){
+			var confirmMsg = 'You\'re deleting department : ' + deptno + '-' + dname + ', are you sure you want to do it?';
+			if(window.confirm(confirmMsg) != true){
+				return;
+			}
+			
 			var xmlHttpRequest = new XMLHttpRequest();
 			
 			xmlHttpRequest.onreadystatechange = function() {
@@ -59,6 +60,7 @@
 		    xmlHttpRequest.open('DELETE', '<%=request.getContextPath()%>/dept/deleteOne/' + deptno, true);
 		    xmlHttpRequest.send();
 		}
+		
 	</script>
 </body>
 </html>

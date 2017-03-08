@@ -20,17 +20,16 @@
 			<thead>
 				<tr>
 					<th>部門名稱</th>
-					<th>地點</th>
-				</tr>
+					<th>地點</th></tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>${dept.dname }</td>
-					<td>${dept.loc }</td>
-				</tr>
+					<td>${dept.loc }</td></tr>
 			</tbody>
 		</table>
 		<a class="btn btn-default" href="<%=request.getContextPath() %>/welcome">回首頁</a>
+		<a class="btn btn-info" href="<%=request.getContextPath() %>/dept/findAllDepts">查看所有部門</a>
 		<a class="btn btn-success" href="<%=request.getContextPath() %>/dept/modify/${dept.deptno}">更新</a>
 	</div>
 </body>
