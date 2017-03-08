@@ -17,6 +17,8 @@ public class RequestMappingController {
 		return "<h1>viewAll</h1>";
 	}
 
+	// 會根據延伸檔名(mime type)而決定回傳的Content-Type
+	// 例如:*.json回傳的Content-Type為application/json;charset=UTF-8
 	@RequestMapping("view/*.json")
 	@ResponseBody
 	public String viewJson(){
@@ -37,12 +39,12 @@ public class RequestMappingController {
 	
 	/** HTTP request method restrictions */
 	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@RequestMapping(value = "httpmethod", method = RequestMethod.GET)
 	public String loginPage(){
-		return "login";
+		return "httpmethod";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@RequestMapping(value = "httpmethod", method = RequestMethod.POST)
 	@ResponseBody
 	public String verifyLogin(){
 		return "<h1>RequestMethod.POST</h1>";

@@ -16,9 +16,7 @@
 		<form:label path="date">date:</form:label>
 		<form:input path="date"/><br />
 		<form:label path="file">uploads:</form:label>
-		<input type="file" name="file" /><br />
-		<form:label path="file">uploads:</form:label>
-		<input type="file" name="file" /><br />
+		<input type="file" name="file" multiple="multiple" /><br />
 		<button>Submit</button>
 	</form:form>
 </body>
